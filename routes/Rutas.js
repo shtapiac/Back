@@ -143,8 +143,8 @@ rutas.post("/login", async (req, res) => {
 
 
 
-rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que ser cambiado a PUT, post para hacer troubleshoot
-   
+rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que ser cambiado a PUT, get para hacer troubleshoot
+                                                    //como comentario adicional, realmente funciona bien con get, quizas no sea necesario cambiar a put
   //https://mongoosejs.com/docs/queries.html#streaming
   //https://stackoverflow.com/questions/492994/compare-two-dates-with-javascript
 
@@ -152,14 +152,14 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
 
      var cont = 0
 
-    for await (const predio of predios.find() ) {
+    for await (const predio of predios.find() ) { //for await of --> map no funciona en ciclos async, toca con este comando
 
-      console.log(predio)
-      cont = cont + 1 
+    predio.valpredial = 0 // funciona bien y si está colocando el mismo valor a todos los campos de la coleccion
+    await predio.save()   // se guarda lo anterior
 
     }
 
-    return res.json(cont)
+    return res.json(cont) //debug para que en postman salga el valor de cont cuando se mande el req
 
     //});
   

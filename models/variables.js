@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const variablesSchema = new Schema({
 
     fechanow: Date,
-    fechadesc: Date,
+    fechadescuento: Date,
     fechalimite: Date,
     porcentajecobro: Number,
     porcentajedescuento: Number,

@@ -155,6 +155,10 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
      var cont = 0
      let fechanow = 0
      let fechalimite = 0
+     let fechadesc = 0
+     let porcentajecobro = 0
+     let porcentajedescuento = 0
+     let porcentajemulta = 0
 
     for await (const predio of predios.find() ) { //for await of --> map no funciona en ciclos async, toca con este comando
 
@@ -166,23 +170,22 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
     for await (const fechavar of variables.find() ) { // una forma de traer todas las variables, ya que solo hay un registro, solo deberia traer un solo dato sin problemas
 
       fechanow = fechavar.fechanow
-      //let fechadesc = fechavar.fechadesc
+      fechadesc = fechavar.fechadescuento
       fechalimite = fechavar.fechalimite
-      //let porcentajecobro = fechavar.porcentajecobro
-      //let porcentajedescuento = fechavar.porcentajedescuento
-      //let porcentajemulta = fechavar.porcentajemulta
-
+      porcentajecobro = fechavar.porcentajecobro
+      porcentajedescuento = fechavar.porcentajedescuento
+      porcentajemulta = fechavar.porcentajemulta
+      
     }
     console.log(cont);
 
     //imprimimos las variables de arriba en la consola para revisar que funciona - debug 
     console.log(fechanow)
-    
-    //console.log(fechadesc);
+    console.log(fechadesc);
     console.log(fechalimite);
-    //console.log(porcentajecobro);
-    //console.log(porcentajedescuento)
-    //console.log(porcentajemulta);
+    console.log(porcentajecobro);
+    console.log(porcentajedescuento)
+    console.log(porcentajemulta);
     
     var d1 = new Date(fechanow)
     var d2 = new Date(fechalimite)

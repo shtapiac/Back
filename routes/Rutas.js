@@ -4,6 +4,7 @@ const usuarios = require('../models/usuarios')
 const predios = require('../models/predios')
 const variables = require('../models/variables')
 
+
 /*rutas.get('/test', (req, res) => {
     res.json({
         mensaje: "Hola mundo"
@@ -22,6 +23,12 @@ const todosusuarios = async () => {
 //obtener todos los usuarios
 rutas.get('/allusers', async (req, res) => {
     res.json(await todosusuarios() ) 
+})
+
+//obtener todos los predios
+rutas.get('/allpredios', async (req, res) => {
+  const pred = await predios.find()
+  res.json(pred ) 
 })
 
 
@@ -136,15 +143,30 @@ rutas.post("/login", async (req, res) => {
 
 
 
-rutas.post("/calcularpredial", async (req, res) => { //probablemente tenga que ser cambiado a PUT, post para hacer troubleshoot
+rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que ser cambiado a PUT, post para hacer troubleshoot
    
-  //https://lineadecodigo.com/mongodb/recorrer-un-cursor-en-mongodb/
-    //https://es.stackoverflow.com/questions/112317/c%C3%B3mo-recorrer-un-conjunto-de-documentos-de-mongodb-en-c
+  //https://mongoosejs.com/docs/queries.html#streaming
+  //https://stackoverflow.com/questions/492994/compare-two-dates-with-javascript
 
-    
+ 
 
+     var cont = 0
 
+    for await (const predio of predios.find() ) {
 
+      console.log(predio)
+      cont = cont + 1 
+
+    }
+
+    return res.json(cont)
+
+    //});
+  
+  
+  
+  
+  
   })
   
   

@@ -96,6 +96,8 @@ rutas.post("/login", async (req, res) => {
             datosenviar = {
             nivelacceso: usuario.nivelacceso,
             cedula: usuario.cedula,
+            nombre: usuario.nombre,
+            correo: usuario.correo,
             correoycontrasena: true
 
             }

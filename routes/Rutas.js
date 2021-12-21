@@ -129,14 +129,29 @@ rutas.post("/login", async (req, res) => {
      
     }
   
+     
+  })
   
+
+
+
+
+rutas.post("/calcularpredial", async (req, res) => { //probablemente tenga que ser cambiado a PUT, post para hacer troubleshoot
    
+  //https://lineadecodigo.com/mongodb/recorrer-un-cursor-en-mongodb/
+    //https://es.stackoverflow.com/questions/112317/c%C3%B3mo-recorrer-un-conjunto-de-documentos-de-mongodb-en-c
+
+    
+
+
+
   })
   
   
-  
-  
   ;
+
+
+
 
 
 

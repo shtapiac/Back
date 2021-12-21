@@ -151,6 +151,8 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
  
 
      var cont = 0
+     let fechanow = 0
+     let fechalimite = 0
 
     for await (const predio of predios.find() ) { //for await of --> map no funciona en ciclos async, toca con este comando
 
@@ -159,7 +161,36 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
 
     }
 
+    for await (const fechavar of variables.find() ) { // una forma de traer todas las variables, ya que solo hay un registro, solo deberia traer un solo dato sin problemas
+
+      fechanow = fechavar.fechanow
+      //let fechadesc = fechavar.fechadesc
+      fechalimite = fechavar.fechalimite
+      //let porcentajecobro = fechavar.porcentajecobro
+      //let porcentajedescuento = fechavar.porcentajedescuento
+      //let porcentajemulta = fechavar.porcentajemulta
+
+    }
+    console.log(cont);
+
+    //imprimimos las variables de arriba en la consola para revisar que funciona - debug 
+    console.log(fechanow)
+    
+    //console.log(fechadesc);
+    console.log(fechalimite);
+    //console.log(porcentajecobro);
+    //console.log(porcentajedescuento)
+    //console.log(porcentajemulta);
+    
+    var d1 = new Date(fechanow)
+    var d2 = new Date(fechalimite)
+
+    console.log( d1.getTime() < d2.getTime() ); // mandamos en el console log la evaluacion de esta condicion 
+
     return res.json(cont) //debug para que en postman salga el valor de cont cuando se mande el req
+    
+
+    
 
     //});
   

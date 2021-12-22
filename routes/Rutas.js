@@ -62,7 +62,7 @@ rutas.post('/crearusuario', async (req, res) => {
 
     await usuario.save() //grabamos los datos de la petición post
 
-    //res.json(usuario) //devuelve lo que se grabó
+    res.json({mensaje: "usuario creado"})
 })
 
 rutas.post('/crearpredio', async (req, res) => {
@@ -73,7 +73,7 @@ rutas.post('/crearpredio', async (req, res) => {
 
     await predio.save() //grabamos los datos de la petición post
 
-    //res.json(usuario) //devuelve lo que se grabó
+    res.json({mensaje: "predio creado"}) //devuelve lo que se grabó
 })
 
 

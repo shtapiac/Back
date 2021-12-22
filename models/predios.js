@@ -16,6 +16,7 @@ const prediosSchema = new Schema({
     valpredial: Number,
     pagado: Boolean,
     pagoatrasado: Boolean,
+    tienedescuento: Boolean,
 
     
 })

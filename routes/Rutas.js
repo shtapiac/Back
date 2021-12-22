@@ -69,7 +69,7 @@ rutas.post('/crearpredio', async (req, res) => {
     
     let datospost = await req.body
     
-    let predio = new crearpredios(datospost)
+    let predio = new predios(datospost)
 
     await predio.save() //grabamos los datos de la petición post
 
@@ -159,12 +159,14 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
      let porcentajecobro = 0
      let porcentajedescuento = 0
      let porcentajemulta = 0
-
+      let temp = 100000000
+    
+    
     for await (const predio of predios.find() ) { //for await of --> map no funciona en ciclos async, toca con este comando
 
-    predio.valpredial = 0 // funciona bien y si está colocando el mismo valor a todos los campos de la coleccion
-    await predio.save()   // se guarda lo anterior
-
+      predio.vm2 = temp // funciona bien y si está colocando el mismo valor a todos los campos de la coleccion
+      await predio.save()   // se guarda lo anterior
+      temp = temp + 500000
     }
 
     for await (const fechavar of variables.find() ) { // una forma de traer todas las variables, ya que solo hay un registro, solo deberia traer un solo dato sin problemas
@@ -175,29 +177,31 @@ rutas.get("/calcularpredial", async (req, res) => { //probablemente tenga que se
       porcentajecobro = fechavar.porcentajecobro
       porcentajedescuento = fechavar.porcentajedescuento
       porcentajemulta = fechavar.porcentajemulta
-      
+
     }
-    console.log(cont);
+    //console.log(cont);
 
     //imprimimos las variables de arriba en la consola para revisar que funciona - debug 
-    console.log(fechanow)
-    console.log(fechadesc);
-    console.log(fechalimite);
-    console.log(porcentajecobro);
-    console.log(porcentajedescuento)
-    console.log(porcentajemulta);
+    //console.log(fechanow)
+    //console.log(fechadesc);
+    //console.log(fechalimite);
+    //console.log(porcentajecobro);
+    //console.log(porcentajedescuento)
+    //console.log(porcentajemulta);
     
-    var d1 = new Date(fechanow)
-    var d2 = new Date(fechalimite)
+    fechanow = new Date(fechanow)
+    fechalimite = new Date(fechalimite)
+    fechadesc = new Date(fechadesc)
 
-    console.log( d1.getTime() < d2.getTime() ); // mandamos en el console log la evaluacion de esta condicion 
-
+    console.log( fechanow.getTime() > fechalimite.getTime() ); // mandamos en el console log la evaluacion de esta condicion 
+    console.log( fechanow.getTime() > fechadesc.getTime());
     return res.json(cont) //debug para que en postman salga el valor de cont cuando se mande el req
     
-
+    //for await (const predio of predios.find() ) {
+    //  if ()
     
 
-    //});
+    //};
   
   
   
